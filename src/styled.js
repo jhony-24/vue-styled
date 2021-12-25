@@ -70,7 +70,7 @@ const styled = (tag, classNames, postClassNames = null) => {
     },
   };
 };
-export default {
+export {
   styled,
   ThemeProvider,
 };
