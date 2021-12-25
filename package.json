@@ -1,0 +1,23 @@
+{
+  "name": "vue-styled",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhony-24/vue-styled.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhony-24/vue-styled/issues"
+  },
+  "homepage": "https://github.com/jhony-24/vue-styled#readme",
+  "dependencies": {
+    "csx": "^10.0.2"
+  }
+}
