@@ -1,23 +1,75 @@
 {
   "name": "vue-styled",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Create styled components in Vue using the best of CSS in Js and Tailwind",
+  "main": "./lib/index.cjs.js",
+  "module": "./lib/index.esm.js",
+  "exports": {
+    "require": "./lib/index.cjs.js",
+    "import": "./lib/index.esm.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "postinstall": "husky install",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jhony-24/vue-styled.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "vue",
+    "styled-components",
+    "vue2",
+    "vue3",
+    "library",
+    "css in js",
+    "atomic css",
+    "tailwind"
+  ],
+  "author": "jhony-24",
+  "license": "MIT",
+  "files": [
+    "lib",
+    "package.json"
+  ],
   "bugs": {
     "url": "https://github.com/jhony-24/vue-styled/issues"
   },
   "homepage": "https://github.com/jhony-24/vue-styled#readme",
-  "dependencies": {
-    "csx": "^10.0.2"
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/eslint-parser": "^7.16.5",
+    "@babel/plugin-transform-runtime": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.1.1",
+    "@types/jest": "^27.0.3",
+    "@vue/test-utils": "^1.3.0",
+    "babel-jest": "^27.4.5",
+    "cxs": "^6.2.0",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "flush-promises": "^1.0.2",
+    "husky": "^7.0.4",
+    "jest": "^27.4.5",
+    "lint-staged": "^12.1.4",
+    "prettier": "^2.5.1",
+    "rollup": "^2.62.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-uglify": "^6.0.4",
+    "vue": "^2.6.14",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:fix",
+      "npm run test"
+    ]
   }
 }

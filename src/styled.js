@@ -1,10 +1,17 @@
 import cxs from "cxs";
+const getClassnames = ({ classNames, attrs, theme }) => {
+  return typeof classNames === "function"
+    ? classNames({ ...attrs, theme })
+    : classNames;
+};
 
 const getDynamicClassNames = (classNames, context) => {
   return cxs(
-    typeof classNames === "function"
-      ? classNames({ ...context.$attrs, theme: context.theme() })
-      : classNames
+    getClassnames({
+      classNames,
+      attrs: context.$attrs,
+      theme: typeof context?.theme === "function" ? context.theme() : {},
+    })
   );
 };
 
@@ -46,6 +53,7 @@ const styled = (tag, classNames, postClassNames = null) => {
         default: () => ({}),
       },
     },
+
     render(createElement) {
       const isString = typeof classNames === "string";
       const canGetOnlyClassNames = isString && postClassNames === null;
@@ -60,9 +68,20 @@ const styled = (tag, classNames, postClassNames = null) => {
         {
           class: `${buildClassnames} ${
             postClassNames === null ? "" : classNames
-          }`,
-          attrs: this.$attrs,
-          props: this.$props,
+          }`.trim(),
+          attrs: {
+            ...this.$attrs,
+            __styled__: JSON.stringify(
+              getClassnames({
+                attrs: this.$props,
+                classNames:
+                  postClassNames !== null ? postClassNames : classNames,
+              })
+            ),
+          },
+          props: {
+            ...this.$props,
+          },
           on: this.$listeners,
         },
         this.$slots.default
@@ -70,7 +89,4 @@ const styled = (tag, classNames, postClassNames = null) => {
     },
   };
 };
-export {
-  styled,
-  ThemeProvider,
-};
+export { styled, ThemeProvider };
